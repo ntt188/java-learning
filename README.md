@@ -15,6 +15,7 @@ java HelloWorld
 ## Những gì đã học
 - [x] Git: init, add, commit, log
 - [x] Git: branch, merge, giải quyết conflict
+- [x] Java: String & StringBuilder (lesson01-strings)
 - [ ] Java: OOP cơ bản
 
 ## Liên hệ
