@@ -160,6 +160,37 @@ public class StringPractice {
         return count;
     }
 
+    // ===== Bài 1.5 — Nén chuỗi (Run-Length Encoding) =====
+    static String compress(String s) {
+        if (s == null) {
+            return null;
+        }
+        int length = s.length();
+        if (length == 0) {
+            return "";
+        }
+        StringBuilder compressed = new StringBuilder();
+        char currentChar = s.charAt(0);   // ký tự của NHÓM đang đếm
+        int currentCount = 1;             // nhóm hiện tại dài bao nhiêu
+        for (int i = 1; i < length; i++) {
+            char c = s.charAt(i);
+            if (c == currentChar) {
+                currentCount++;               // vẫn cùng nhóm → đếm tiếp
+            } else {
+                compressed.append(currentChar);   // nhóm cũ KẾT THÚC → ghi lại
+                compressed.append(currentCount);
+                currentChar = c;                  // bắt đầu nhóm MỚI
+                currentCount = 1;
+            }
+        }
+        // Nhóm CUỐI CÙNG chưa được ghi (không có ký tự khác phía sau để "kích hoạt" việc ghi)
+        compressed.append(currentChar);
+        compressed.append(currentCount);
+        String compressedStr = compressed.toString();
+        // Chỉ dùng bản nén nếu nó NGẮN HƠN bản gốc
+        return compressedStr.length() < length ? compressedStr : s;
+    }
+
     public static void main(String[] args) {
         System.out.println("=== 1.1 reverseA ===");
         check("hello", reverseA("hello"), "olleh");
@@ -265,5 +296,15 @@ public class StringPractice {
         check("empty",  countWordsB(""),                     0);
         check("blank",  countWordsB("   "),                  0);
         check("null",   countWordsB(null),                   -1);
+
+        System.out.println("=== 1.5 compress ===");
+        check("basic",  compress("aabcccccaaa"),  "a2b1c5a3");
+        check("twelve", compress("aaaaaaaaaaaa"), "a12");
+        check("case",   compress("aaAAA"),        "a2A3");
+        check("abc",    compress("abc"),          "abc");
+        check("equal",  compress("aabb"),         "aabb");
+        check("one",    compress("a"),            "a");
+        check("empty",  compress(""),             "");
+        check("null",   compress(null),           null);
     }
 }

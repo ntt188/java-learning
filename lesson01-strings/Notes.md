@@ -209,3 +209,57 @@ Lý do chọn null là để đỡ phải báo lỗi, chỉ cần giấu lỗi �
 ## ⚠️ Lỗi đã mắc trong bài này
 11. **Hiểu sai `split`.** Dấu phân cách bị cắt bỏ (không nằm trong kết quả). Không cắt được gì thì trả về `[""]` (1 phần tử), không phải mảng rỗng.
 12. **Thụt lề comment bị lệch** (lần 2, sau Bài 1.2).
+
+
+---
+
+# Bài tập 1.5: Nén chuỗi
+
+## Ý tưởng
+Đi qua chuỗi từ trái sang phải, luôn nhớ 2 thứ: **ký tự của nhóm đang đếm** (`currentChar`) và **nhóm đó dài bao nhiêu** (`currentCount`).
+- Gặp ký tự GIỐNG thì `currentCount++`.
+- Gặp ký tự KHÁC thì nhóm cũ đã kết thúc: ghi `currentChar + currentCount` vào `sb`, rồi bắt đầu nhóm mới.
+- **Sau vòng lặp phải ghi nhóm cuối cùng.**
+
+## Bảng lần theo với `"aabccc"`
+| i | `s.charAt(i)` | Giống `currentChar`? | Việc làm | `currentChar` | `currentCount` | `compressed` |
+|---|---|---|---|---|---|---|
+| (trước vòng lặp) | `a` | | bắt đầu nhóm đầu tiên | `a` | 1 | `""` |
+| 1 | `a` | ✅ | đếm tiếp | `a` | 2 | `""` |
+| 2 | `b` | ❌ | ghi `a2`, bắt đầu nhóm `b` | `b` | 1 | `"a2"` |
+| 3 | `c` | ❌ | ghi `b1`, bắt đầu nhóm `c` | `c` | 1 | `"a2b1"` |
+| 4 | `c` | ✅ | đếm tiếp | `c` | 2 | `"a2b1"` |
+| 5 | `c` | ✅ | đếm tiếp | `c` | 3 | `"a2b1"` |
+| **hết vòng lặp** | | | **ghi `c3`** | | | **`"a2b1c3"`** |
+
+👉 Nhóm `ccc` KHÔNG được ghi trong vòng lặp, vì nhóm cũ chỉ được ghi khi gặp ký tự KHÁC, mà sau `ccc` không còn ký tự nào. Nếu quên 2 dòng `append` sau vòng lặp, kết quả sẽ thiếu nhóm cuối: `"a2b1"`. Đây là **lỗi kinh điển** của bài này.
+
+## Trả lời 3 câu hỏi
+1. **Bảng lần theo:** xem bảng ở trên.
+2. **Dùng `result += ...` thay cho StringBuilder có sai không?**
+   Không sai (vẫn ra đúng kết quả), nhưng **chậm**: mỗi lần `+=` tạo một String mới và copy lại toàn bộ chuỗi cũ, nên độ phức tạp là O(n²). StringBuilder chỉ ghi tiếp vào cuối, nên là O(n) (khái niệm 2).
+3. **Vì sao bài này trả về `null` được, còn 1.3, 1.4 thì không?**
+   Bài này trả về `String`, là kiểu reference, nên biến có thể "không trỏ tới đâu" (`null`). Bài 1.3 trả về `boolean` và Bài 1.4 trả về `int`, đều là primitive, nên luôn phải có giá trị và không bao giờ là `null`.
+
+## Đọc hiểu dòng cuối (toán tử 3 ngôi)
+```java
+return compressedStr.length() < length ? compressedStr : s;
+```
+Nghĩa là: `điều kiện ? giá trị nếu ĐÚNG : giá trị nếu SAI`. Viết dài ra thành:
+```java
+if (compressedStr.length() < length) {
+    return compressedStr;   // bản nén ngắn hơn → dùng bản nén
+} else {
+    return s;               // bản nén dài hơn hoặc BẰNG → dùng bản gốc
+}
+```
+Dùng `<` (không phải `<=`), nên `"aabb"` → `"a2b2"` cùng dài 4 → trả về bản gốc.
+
+## Review code
+- Kết quả: **8 / 8 PASS** (tổng file 77 / 77).
+- Code chạy đúng ngay lần đầu, có xử lý `null`, `""` và nhóm cuối cùng.
+- Đã sửa nhỏ: xóa `// TODO`; đổi tên biến `count` thành `length` (vì nó là độ dài chuỗi, không phải số đếm; tên cũ dễ nhầm với `currentCount`); thêm comment giải thích từng bước.
+
+## ⚠️ Lỗi đã mắc trong bài này
+13. **Đặt tên biến gây nhầm lẫn:** `count` chứa độ dài chuỗi, trong khi đã có `currentCount` để đếm nhóm. Tên biến phải nói đúng nó chứa gì.
+14. **Quên xóa `// TODO`** (lần 3).
