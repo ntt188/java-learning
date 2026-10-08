@@ -263,3 +263,16 @@ Dùng `<` (không phải `<=`), nên `"aabb"` → `"a2b2"` cùng dài 4 → tr�
 ## ⚠️ Lỗi đã mắc trong bài này
 13. **Đặt tên biến gây nhầm lẫn:** `count` chứa độ dài chuỗi, trong khi đã có `currentCount` để đếm nhóm. Tên biến phải nói đúng nó chứa gì.
 14. **Quên xóa `// TODO`** (lần 3).
+
+## 🧪 Thí nghiệm hiểu code: 3 / 3 ✅
+1. **Bỏ 2 dòng `append` sau vòng lặp (ghi nhóm cuối):**
+   - basic → `"a2b1c5"` (mất `a3`); twelve → `""` (mất `a12`); case → `"a2"` (mất `A3`); equal → `"a2"`; one → `""`.
+   - Chuỗi chỉ có 1 nhóm (`twelve`, `one`) thì **mất trắng toàn bộ**, vì nhóm duy nhất cũng chính là nhóm cuối.
+   - Test `abc` **vẫn PASS dù code sai**: `"a1b1"` dài hơn `"abc"` nên hàm trả về chuỗi gốc, vô tình ra đúng. Test PASS chưa chắc code đã đúng (xem lỗi 5).
+2. **Đổi `<` thành `<=`:** test `equal` FAIL. `"a2b2"` và `"aabb"` cùng dài 4, nhưng `<=` chọn bản nén dù nó không ngắn hơn.
+3. **Đổi `int i = 1` thành `int i = 0`:** `"aabcccccaaa"` → `"a3b1c5a3"`. Ký tự đầu tiên đã được đếm ở bước chuẩn bị (`currentCount = 1`), nên vòng lặp bắt đầu từ 0 sẽ đếm nó **2 lần**.
+   - Đây là lỗi **off-by-one** (lệch đúng 1 đơn vị), rất hay gặp với vòng lặp và chỉ số mảng.
+
+## ⚠️ Lỗi kinh điển cần nhớ từ bài này
+15. **Quên ghi nhóm cuối cùng sau vòng lặp.** Khi code chỉ "ghi" lúc gặp sự thay đổi, phần tử/nhóm cuối không có sự thay đổi nào theo sau, nên phải ghi riêng sau vòng lặp.
+16. **Off-by-one:** vòng lặp bắt đầu/kết thúc lệch 1 vị trí (ví dụ `i = 0` thay vì `i = 1`, hoặc `<=` thay vì `<`). Luôn tự hỏi: phần tử đầu và cuối đã được xử lý **đúng 1 lần** chưa?
