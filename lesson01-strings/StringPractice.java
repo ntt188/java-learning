@@ -85,6 +85,49 @@ public class StringPractice {
         return result;
     }
 
+    // ===== Bài 1.3 — Cách A: hai con trỏ, bỏ qua ký tự không hợp lệ =====
+    static boolean isPalindromeA(String s) {
+        if (s == null) {
+            return false; // hoặc return null; tùy theo yêu cầu
+        }
+        int left = 0;
+        int right = s.length() - 1;
+        while (left < right) {
+            char leftChar = s.charAt(left);
+            char rightChar = s.charAt(right);
+            if (!Character.isLetterOrDigit(leftChar)) {
+                left++;
+                continue;
+            }
+            if (!Character.isLetterOrDigit(rightChar)) {
+                right--;
+                continue;
+            }
+            if (Character.toLowerCase(leftChar) != Character.toLowerCase(rightChar)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+
+    // ===== Bài 1.3 — Cách B: lọc chuỗi bằng StringBuilder rồi so với bản đảo ngược =====
+    static boolean isPalindromeB(String s) {
+        if (s == null) {
+            return false; // hoặc return null; tùy theo yêu cầu
+        }
+        StringBuilder filtered = new StringBuilder();
+        for (char c : s.toCharArray()) {
+            if (Character.isLetterOrDigit(c)) {
+                filtered.append(Character.toLowerCase(c));
+            }
+        }
+        String filteredStr = filtered.toString();
+        String reversedStr = filtered.reverse().toString();
+        return filteredStr.equals(reversedStr);
+    }
+
     public static void main(String[] args) {
         System.out.println("=== 1.1 reverseA ===");
         check("hello", reverseA("hello"), "olleh");
@@ -148,5 +191,29 @@ public class StringPractice {
         System.out.println("=== 1.2 demo: emoji ===");
         System.out.println("\"😀\".length() = " + "😀".length());
         System.out.println("countCharsB(\"😀\").size() = " + countCharsB("😀").size());
+
+        System.out.println("=== 1.3 isPalindromeA ===");
+        check("racecar", isPalindromeA("racecar"), true);
+        check("abba",    isPalindromeA("abba"),    true);
+        check("hello",   isPalindromeA("hello"),   false);
+        check("case",    isPalindromeA("Aa"),      true);
+        check("panama",  isPalindromeA("A man, a plan, a canal: Panama"), true);
+        check("raceacar",isPalindromeA("race a car"), false);
+        check("empty",   isPalindromeA(""),        true);
+        check("symbols", isPalindromeA(".,!"),     true);
+        check("0P",      isPalindromeA("0P"),      false);
+        check("null",    isPalindromeA(null),     false);
+
+        System.out.println("=== 1.3 isPalindromeB ===");
+        check("racecar", isPalindromeB("racecar"), true);
+        check("abba",    isPalindromeB("abba"),    true);
+        check("hello",   isPalindromeB("hello"),   false);
+        check("case",    isPalindromeB("Aa"),      true);
+        check("panama",  isPalindromeB("A man, a plan, a canal: Panama"), true);
+        check("raceacar",isPalindromeB("race a car"), false);
+        check("empty",   isPalindromeB(""),        true);
+        check("symbols", isPalindromeB(".,!"),     true);
+        check("0P",      isPalindromeB("0P"),      false);
+        check("null",    isPalindromeB(null),     false);
     }
 }

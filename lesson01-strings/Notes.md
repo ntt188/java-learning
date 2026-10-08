@@ -121,3 +121,13 @@ Lý do chọn null là để đỡ phải báo lỗi, chỉ cần giấu lỗi �
   - Thêm guard clause `if (s == null) return null;` cho cả 2 hàm. Trước đó test `null` làm **crash cả chương trình** (`NullPointerException`), các test phía sau không chạy được.
   - Cách A: mảng `int[128]` → `int[Character.MAX_VALUE + 1]` để không crash với ký tự ngoài ASCII.
   - Xóa các dòng `// TODO`, sửa thụt lề, dùng `Objects.equals` ngắn gọn (đã có `import java.util.*`).
+
+
+---
+
+# Bài tập 1.3: Palindrome
+
+## Trả lời 3 câu hỏi
+1. theo tôi cả 2 cách đều tốn tường đồng nhau vì đều tác động trên 1 đối tượng
+2. vì chỉ cần tìm kiếm và so sánh không cần thay đổi
+3. tôi chưa có câu trả lời
