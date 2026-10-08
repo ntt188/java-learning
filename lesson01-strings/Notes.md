@@ -74,6 +74,9 @@ Dự đoán:
 4. **`split(" ")` với nhiều khoảng trắng liên tiếp.** `"  I  love".split(" ")` trả về `["", "", "I", "", "love"]`, tức là sinh ra các chuỗi rỗng `""`.
    - Cách sửa: `s.trim().split("\\s+")`. `trim()` bỏ khoảng trắng ở 2 đầu, còn `\\s+` nghĩa là "một hoặc nhiều khoảng trắng". Sẽ gặp lại ở Bài 1.4: Đếm từ.
 5. **Viết thiếu test case.** Test PASS hết không có nghĩa là code không có bug. Luôn thêm các case: nhiều khoảng trắng, chuỗi chỉ có khoảng trắng, emoji.
+6. **Viết test cho `null` nhưng quên xử lý `null` trong hàm.** Kết quả là `NullPointerException` làm dừng cả chương trình. Mỗi khi viết test `null`, phải thêm guard clause ở đầu hàm.
+7. **Mảng đếm `int[128]` chỉ đủ cho ASCII.** Ký tự như `é` (233) làm vượt chỉ số. Dùng `int[Character.MAX_VALUE + 1]` hoặc dùng `HashMap`.
+8. **Quên xóa `// TODO`** sau khi viết xong hàm (mắc 2 lần).
 
 ## Lý do chọn trả về `null`
 Lý do chọn null là để đỡ phải báo lỗi, chỉ cần giấu lỗi đi.
@@ -91,3 +94,30 @@ Lý do chọn null là để đỡ phải báo lỗi, chỉ cần giấu lỗi �
   - `reverseB`: đổi sang guard clause (kiểm tra `null` và `return` ngay đầu hàm)
   - Sửa comment sai "Cách C" thành "Mở rộng: đảo thứ tự các từ"
 - Bài học: **test xanh chỉ chứng minh code đúng với những case đã viết.** 6 test ban đầu của `reverseWords` đều PASS nhưng code vẫn có bug, vì chưa có test nào chứa nhiều khoảng trắng.
+
+
+---
+
+# Bài tập 1.2: Đếm ký tự
+
+## Dự đoán: HashMap so sánh
+- `m1 == m2`: **false** (2 object khác nhau, khác địa chỉ).
+- `m1.equals(m2)`: **true**. Khác với StringBuilder, các class Map CÓ override `equals()`: hai Map bằng nhau nếu có cùng các cặp key → value, **không quan tâm thứ tự**.
+
+## Trả lời 3 câu hỏi
+1. **Cách nào chạy được với mọi ký tự?**
+   Theo tôi nghĩ thì cách B sẽ đọc được hết.
+   - Bổ sung: B đúng với `é` và chữ tiếng Việt (mỗi chữ = 1 `char`). Nhưng emoji 😀 = 2 `char` (surrogate pair), nên B đếm thành 2 key, vẫn SAI với emoji.
+   - Cách A với mảng `int[128]` bị crash với `"café"` (`'é'` = 233 > 127 → `ArrayIndexOutOfBoundsException`). Đã sửa bằng mảng `Character.MAX_VALUE + 1` = 65536 ô, đủ cho mọi `char`.
+2. **HashMap và LinkedHashMap khác gì?**
+   - `HashMap` in ra `{e=1, h=1, l=2, o=1}`: thứ tự **không đảm bảo** (sắp theo mã băm, không theo thứ tự thêm vào).
+   - `LinkedHashMap` in ra `{h=1, e=1, l=2, o=1}`: **giữ đúng thứ tự thêm vào**.
+3. **Vì sao `check()` so sánh được 2 Map dù thứ tự in khác nhau?**
+   `check()` dùng `Objects.equals()`, mà Map đã override `equals()` để so sánh **nội dung** (các cặp key → value), không so sánh thứ tự hay địa chỉ.
+
+## Review code
+- Kết quả: **14 / 14 PASS** cho Bài 1.2 (mỗi cách 7 test, gồm `null` và `"café"`).
+- Đã sửa:
+  - Thêm guard clause `if (s == null) return null;` cho cả 2 hàm. Trước đó test `null` làm **crash cả chương trình** (`NullPointerException`), các test phía sau không chạy được.
+  - Cách A: mảng `int[128]` → `int[Character.MAX_VALUE + 1]` để không crash với ký tự ngoài ASCII.
+  - Xóa các dòng `// TODO`, sửa thụt lề, dùng `Objects.equals` ngắn gọn (đã có `import java.util.*`).
