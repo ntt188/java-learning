@@ -160,3 +160,52 @@ Lý do chọn null là để đỡ phải báo lỗi, chỉ cần giấu lỗi �
      2. Nếu không crash → method chạy bình thường. `x.equals(null)` luôn là `false`.
    - Mẹo an toàn: viết `"yes".equals(input)` thay vì `input.equals("yes")`.
 10. **Viết comment sai** ("hoặc return null" trong hàm `boolean`). Comment sai còn nguy hiểm hơn không có comment.
+
+
+---
+
+# Bài tập 1.4: Đếm từ
+
+## Dự đoán `split`: 0 / 4
+| Câu | Mình đoán | Kết quả thật (đã chạy `splitDemo()` trong Concepts.java) |
+|---|---|---|
+| (1) `"".split("\\s+").length` | 0 | **1** → `[""]` |
+| (2) `"   ".trim().split("\\s+").length` | 0 | **1** → `[""]` |
+| (3) `"a b".split("\\s+").length` | 3 | **2** → `["a", "b"]` |
+| (4) `" a b".split("\\s+").length` | 4 | **3** → `["", "a", "b"]` |
+
+**Hình dung `split` = cầm kéo cắt sợi dây:**
+- Mỗi chỗ khớp regex là 1 nhát cắt, kết quả là các đoạn dây còn lại. Số đoạn = số nhát cắt + 1.
+- Dấu cách là CHỖ BỊ CẮT BỎ, không nằm trong kết quả. (Câu 3 mình đếm cả dấu cách nên sai.)
+- Nhát cắt ở ngay đầu chuỗi sinh ra đoạn rỗng `""` ở đầu, nên phải `trim()` trước. (Câu 4)
+- **Không cắt được gì thì trả về nguyên chuỗi gốc**, nên `""` cho ra `[""]`, tức 1 phần tử. `split` luôn trả về ít nhất 1 phần tử. (Câu 1, 2: bẫy của bài này)
+
+## Trả lời 3 câu hỏi
+1. **Vì sao `"".split("\\s+")` trả về 1 phần tử?**
+   Mình trả lời: vì nó chỉ xoá 1 dấu " " khi phát hiện có "  " nên giá trị cuối cùng là " ". ❌
+   - Sửa lại: không có chỗ nào để cắt, nên `split` trả về nguyên chuỗi gốc là `""`. Vì vậy mảng là `[""]`, có 1 phần tử. Muốn đếm đúng phải kiểm tra `trimmed.isEmpty()` thì trả về 0.
+2. **Cách nào tốn thêm bộ nhớ?**
+   Mình trả lời: cách A vì nó sẽ tạo ra nhiều đối tượng để cắt. 🟡 Đúng một nửa.
+   - Cách A: tạo mảng `String[]` và các chuỗi con, nên tốn O(n).
+   - Cách B bản đầu tiên cũng tốn O(n), vì `trim()` tạo String mới và `toCharArray()` tạo mảng copy.
+   - Cách B bản đã sửa (dùng `charAt`, bỏ `trim`) chỉ tốn **O(1)**: chỉ có `inWord`, `count`, `i`.
+3. **Vì sao Cách B không cần xử lý riêng chuỗi rỗng?**
+   - Nếu **đếm lúc một từ BẮT ĐẦU** (gặp ký tự thường mà `inWord == false`), thì chuỗi `""` hoặc `"   "` không có chữ nào để bắt đầu, nên `count` giữ nguyên là 0.
+   - Bản đầu tiên của mình đếm lúc từ KẾT THÚC (gặp khoảng trắng sau từ), nên phải thêm `trim()`, `isEmpty()` và `if (inWord) count++` sau vòng lặp. Đổi sang đếm lúc bắt đầu thì bỏ được cả 3.
+
+## Lý do chọn trả về `-1` cho `null`
+- `int` là primitive, nên không thể trả về `null`.
+- Chọn `-1` vì số từ không bao giờ âm, nên `-1` rõ ràng nghĩa là "đầu vào không hợp lệ". Đây cũng là quy ước của Java: `"abc".indexOf('z')` trả về `-1`.
+
+## Review code
+- Kết quả: **69 / 69 PASS** cho toàn bộ file (Bài 1.1 → 1.4).
+- Làm tốt: Cách A né đúng bẫy `[""]` bằng `if (trimmed.isEmpty()) return 0;`. Không còn `// TODO`.
+- Đã sửa:
+  - Viết lại Cách B: đếm lúc **bắt đầu** từ, dùng `charAt(i)` thay cho `toCharArray()`, bỏ `trim()`, `isEmpty()` và bước kiểm tra sau vòng lặp. Bộ nhớ giảm từ O(n) xuống O(1).
+  - Không gán lại tham số (`s = s.trim()`). Nên dùng biến mới.
+  - Sửa thụt lề comment (lần 2 bị lệch).
+  - Thêm `splitDemo()` vào Concepts.java.
+
+## ⚠️ Lỗi đã mắc trong bài này
+11. **Hiểu sai `split`.** Dấu phân cách bị cắt bỏ (không nằm trong kết quả). Không cắt được gì thì trả về `[""]` (1 phần tử), không phải mảng rỗng.
+12. **Thụt lề comment bị lệch** (lần 2, sau Bài 1.2).

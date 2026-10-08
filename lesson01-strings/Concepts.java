@@ -60,10 +60,32 @@ public class Concepts {
         System.out.println(sb == r);   // ❓ dự đoán
     }
 
+    // Bài 1.4: split() hoạt động thế nào?
+    static void splitDemo() {
+        System.out.println("=== Split demo ===");
+        show("");          // không cắt được gì → [""]  (1 phần tử)
+        show("   ".trim()); // trim() xong cũng là "" → [""]
+        show("a b");       // 1 nhát cắt → 2 đoạn
+        show(" a b");      // nhát cắt ở đầu → đoạn rỗng "" ở đầu
+    }
+
+    static void show(String s) {
+        String[] parts = s.split("\\s+");
+        // in từng phần tử trong dấu "..." để thấy rõ chuỗi rỗng ""
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = 0; i < parts.length; i++) {
+            if (i > 0) sb.append(", ");
+            sb.append('"').append(parts[i]).append('"');
+        }
+        sb.append("]");
+        System.out.println("\"" + s + "\" -> " + sb + "  length = " + parts.length);
+    }
+
     public static void main(String[] args) {
         concept1();
         concept2();
         concept3();
         quickQuestion();
+        splitDemo();
     }
 }

@@ -128,6 +128,38 @@ public class StringPractice {
         return filteredStr.equals(reversedStr);
     }
 
+    // ===== Bài 1.4 — Cách A: trim + split =====
+    static int countWordsA(String s) {
+        if (s == null) {
+            return -1; // -1 = "đầu vào không hợp lệ" (giống quy ước indexOf trả về -1)
+        }
+        String trimmed = s.trim();
+        if (trimmed.isEmpty()) {
+            return 0;
+        }
+        String[] words = trimmed.split("\\s+");
+        return words.length;
+    }
+
+    // ===== Bài 1.4 — Cách B: vòng lặp thủ công với cờ inWord =====
+    static int countWordsB(String s) {
+        if (s == null) {
+            return -1; // -1 = "đầu vào không hợp lệ"
+        }
+        boolean inWord = false; // đang ở TRONG một từ hay không
+        int count = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);           // chỉ ĐỌC → không cần toCharArray()
+            if (Character.isWhitespace(c)) {
+                inWord = false;             // ra khỏi từ
+            } else if (!inWord) {
+                count++;                    // chữ ĐẦU TIÊN của một từ mới → đếm
+                inWord = true;
+            }
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
         System.out.println("=== 1.1 reverseA ===");
         check("hello", reverseA("hello"), "olleh");
@@ -215,5 +247,23 @@ public class StringPractice {
         check("symbols", isPalindromeB(".,!"),     true);
         check("0P",      isPalindromeB("0P"),      false);
         check("null",    isPalindromeB(null),     false);
+
+        System.out.println("=== 1.4 countWordsA ===");
+        check("two",    countWordsA("hello world"),          2);
+        check("one",    countWordsA("hello"),                1);
+        check("spaces", countWordsA("   hello    world  "),  2);
+        check("tabs",   countWordsA("hello\tworld\nJava"),   3);
+        check("empty",  countWordsA(""),                     0);
+        check("blank",  countWordsA("   "),                  0);
+        check("null",   countWordsA(null),                   -1);
+
+        System.out.println("=== 1.4 countWordsB ===");
+        check("two",    countWordsB("hello world"),          2);
+        check("one",    countWordsB("hello"),                1);
+        check("spaces", countWordsB("   hello    world  "),  2);
+        check("tabs",   countWordsB("hello\tworld\nJava"),   3);
+        check("empty",  countWordsB(""),                     0);
+        check("blank",  countWordsB("   "),                  0);
+        check("null",   countWordsB(null),                   -1);
     }
 }
