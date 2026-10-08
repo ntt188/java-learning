@@ -128,6 +128,35 @@ Lý do chọn null là để đỡ phải báo lỗi, chỉ cần giấu lỗi �
 # Bài tập 1.3: Palindrome
 
 ## Trả lời 3 câu hỏi
-1. theo tôi cả 2 cách đều tốn tường đồng nhau vì đều tác động trên 1 đối tượng
-2. vì chỉ cần tìm kiếm và so sánh không cần thay đổi
-3. tôi chưa có câu trả lời
+1. **Cách nào tốn thêm bộ nhớ?**
+   Theo tôi cả 2 cách đều tốn tương đương nhau vì đều tác động trên 1 đối tượng.
+   - ❌ Sửa lại: **Cách B tốn thêm bộ nhớ O(n)**, Cách A chỉ tốn **O(1)**.
+     - Cách A chỉ tạo thêm 2 số `int` (`left`, `right`). Chuỗi dài 10 hay 1 triệu ký tự thì vẫn chỉ 2 số đó.
+     - Cách B tạo thêm 3 object: 1 `StringBuilder` + `filteredStr` + `reversedStr`, mỗi object chứa tới n ký tự.
+     - "Tác động trên 1 đối tượng" chỉ đúng với chuỗi đầu vào. Cách B còn tạo ra object MỚI để làm việc.
+2. **Vì sao Cách A không cần `toCharArray()`?**
+   Vì chỉ cần tìm kiếm và so sánh, không cần thay đổi. ✅
+   - Bổ sung: chỉ ĐỌC thì dùng `charAt(i)` là đủ. Bài 1.1 phải ĐỔI CHỖ ký tự (sửa) nên mới cần `char[]`.
+3. **Nếu chỉ dùng `isLetter()` thay cho `isLetterOrDigit()` thì test `"0P"` còn đúng không?**
+   - Đã thử: test `0P` bị **FAIL** (`got: true, expected: false`).
+   - Lý do: `'0'` là chữ số, không phải chữ cái, nên bị BỎ QUA. Lúc đó cả `left` và `right` cùng chỉ vào `'P'`, vòng lặp dừng (`left < right` sai) và trả về `true`. Kết quả sai, vì `"0p"` đọc ngược là `"p0"`.
+   - Bài học: chọn đúng method lọc. Chữ số cũng là ký tự hợp lệ cần so sánh.
+
+## Lý do chọn trả về `false` cho `null`
+- Hàm trả về `boolean` (primitive), nên KHÔNG THỂ `return null` (lỗi compile: `<null> cannot be converted to boolean`).
+- Chọn `false`: coi `null` là "không phải palindrome", để chương trình không bị crash.
+
+## Review code
+- Kết quả: **55 / 55 PASS** cho toàn bộ file (Bài 1.1 + 1.2 + 1.3).
+- Đã làm tốt: tránh được bẫy `reverse()` bằng cách lưu `filteredStr` TRƯỚC khi đảo; rút gọn thành `return filteredStr.equals(reversedStr);`; không còn `// TODO`.
+- Đã sửa: test `null` mong đợi `false` (không phải `null`); xóa comment sai "hoặc return null".
+
+## ⚠️ Lỗi đã mắc trong bài này
+9. **Nhầm `null` với `""`.**
+   - `""` là **hộp rỗng có thật**: `"".length()` = 0, `"".isEmpty()` = true.
+   - `null` là **không có hộp**: gọi bất kỳ method nào cũng bị `NullPointerException`.
+   - **Quy tắc 2 bước:**
+     1. Biến đứng TRƯỚC dấu chấm là `null` → 💥 crash.
+     2. Nếu không crash → method chạy bình thường. `x.equals(null)` luôn là `false`.
+   - Mẹo an toàn: viết `"yes".equals(input)` thay vì `input.equals("yes")`.
+10. **Viết comment sai** ("hoặc return null" trong hàm `boolean`). Comment sai còn nguy hiểm hơn không có comment.

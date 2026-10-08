@@ -88,7 +88,7 @@ public class StringPractice {
     // ===== Bài 1.3 — Cách A: hai con trỏ, bỏ qua ký tự không hợp lệ =====
     static boolean isPalindromeA(String s) {
         if (s == null) {
-            return false; // hoặc return null; tùy theo yêu cầu
+            return false;
         }
         int left = 0;
         int right = s.length() - 1;
@@ -115,7 +115,7 @@ public class StringPractice {
     // ===== Bài 1.3 — Cách B: lọc chuỗi bằng StringBuilder rồi so với bản đảo ngược =====
     static boolean isPalindromeB(String s) {
         if (s == null) {
-            return false; // hoặc return null; tùy theo yêu cầu
+            return false;
         }
         StringBuilder filtered = new StringBuilder();
         for (char c : s.toCharArray()) {
