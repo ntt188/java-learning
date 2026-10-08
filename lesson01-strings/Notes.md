@@ -58,3 +58,36 @@ Dự đoán:
 
 ## 🎁 Mở rộng nên thử
 - `final String x = "Ja"; String y = x + "va";` thì `y == "Java"` ra **true**, vì compiler tính sẵn hằng số lúc compile và dùng object trong pool.
+
+
+---
+
+# Bài tập 1.1: Đảo chuỗi
+
+## Trả lời 3 câu hỏi
+1. **Vì sao Cách A phải đổi sang `char[]`?**
+   Vì String không thể thay đổi giá trị bên trong nên phải tìm một loại có thể sửa được, đó là char[]. Nên đáp án là: vì phải có thứ để có thể sửa đổi được nên mới chọn char[].
+   - Bổ sung: String không có method kiểu `setCharAt()`. `s.charAt(0) = 'H'` sẽ báo lỗi compile. `toCharArray()` tạo ra một bản COPY, nên Cách A còn tốn thêm bộ nhớ chứ không tiết kiệm.
+2. **Vòng lặp chạy bao nhiêu lần?** n/2 lần (làm tròn xuống). Ví dụ `"hello"` chỉ đổi chỗ 2 lần, chữ `l` ở giữa đứng yên.
+3. **Code thật dùng cách nào?** Mình chọn cách B vì đỡ phải viết dài dòng, và có thể đọc được emoji.
+
+4. **`split(" ")` với nhiều khoảng trắng liên tiếp.** `"  I  love".split(" ")` trả về `["", "", "I", "", "love"]`, tức là sinh ra các chuỗi rỗng `""`.
+   - Cách sửa: `s.trim().split("\\s+")`. `trim()` bỏ khoảng trắng ở 2 đầu, còn `\\s+` nghĩa là "một hoặc nhiều khoảng trắng". Sẽ gặp lại ở Bài 1.4: Đếm từ.
+5. **Viết thiếu test case.** Test PASS hết không có nghĩa là code không có bug. Luôn thêm các case: nhiều khoảng trắng, chuỗi chỉ có khoảng trắng, emoji.
+
+## Lý do chọn trả về `null`
+Lý do chọn null là để đỡ phải báo lỗi, chỉ cần giấu lỗi đi.
+- Đánh đổi cần nhớ: "giấu lỗi" có thể làm người gọi gặp `NullPointerException` ở chỗ khác, khó tìm nguyên nhân. Nếu muốn báo lỗi ngay tại chỗ thì dùng `throw new IllegalArgumentException(...)`.
+
+## Emoji 😀
+- `reverseA("a😀b")` cho kết quả emoji bị vỡ ❌, `reverseB("a😀b")` cho `b😀a` ✅.
+- Lý do: 😀 không vừa 1 `char` (16 bit), nên Java lưu nó bằng 2 `char` (surrogate pair). `"😀".length()` bằng 2.
+- Cách A đổi chỗ từng `char`, nên 2 nửa của emoji bị đảo ngược và emoji bị vỡ. `StringBuilder.reverse()` nhận ra cặp surrogate và giữ nguyên thứ tự của chúng.
+
+## Review code
+- Kết quả cuối: **21 / 21 PASS** (reverseA ×6, reverseB ×6, reverseWords ×9).
+- Đã sửa:
+  - `reverseWords`: `s.split(" ")` → `s.trim().split("\\s+")`
+  - `reverseB`: đổi sang guard clause (kiểm tra `null` và `return` ngay đầu hàm)
+  - Sửa comment sai "Cách C" thành "Mở rộng: đảo thứ tự các từ"
+- Bài học: **test xanh chỉ chứng minh code đúng với những case đã viết.** 6 test ban đầu của `reverseWords` đều PASS nhưng code vẫn có bug, vì chưa có test nào chứa nhiều khoảng trắng.
