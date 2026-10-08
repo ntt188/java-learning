@@ -276,3 +276,58 @@ Dùng `<` (không phải `<=`), nên `"aabb"` → `"a2b2"` cùng dài 4 → tr�
 ## ⚠️ Lỗi kinh điển cần nhớ từ bài này
 15. **Quên ghi nhóm cuối cùng sau vòng lặp.** Khi code chỉ "ghi" lúc gặp sự thay đổi, phần tử/nhóm cuối không có sự thay đổi nào theo sau, nên phải ghi riêng sau vòng lặp.
 16. **Off-by-one:** vòng lặp bắt đầu/kết thúc lệch 1 vị trí (ví dụ `i = 0` thay vì `i = 1`, hoặc `<=` thay vì `<`). Luôn tự hỏi: phần tử đầu và cuối đã được xử lý **đúng 1 lần** chưa?
+
+
+---
+
+# 🧪 Kiểm tra cuối Bài 1: 3.1 / 5
+
+| Câu | Điểm | Tự tin | Ghi chú |
+|---|---|---|---|
+| 1. Immutable (`java jovo`) | 1 / 1 ✅ | Chắc chắn | |
+| 2. `==` và `equals()` | 3 / 5 | Chắc chắn ⚠️ | sai (1) và (4) |
+| 3. `null` và `""` | 2 / 3 | Chắc chắn ⚠️ | sai (2) |
+| 4. `split` | 2 / 4 | Chắc chắn / (4) không chắc | sai (3) và (4) |
+| 5. Tìm bug `compress` | 0.33 | Không chắc | output `"a2"` đúng, chưa chỉ ra 2 bug |
+
+⚠️ **4 dòng sai nhưng ghi "Chắc chắn"**, trong đó 3 dòng là lỗi ĐÃ CÓ trong Notes (lỗi 2, 9, 11). Đã đọc giải thích nhưng **chưa thành phản xạ**.
+
+## Các câu sai và lời giải
+- **Câu 2 (1): `"h" + "i" == "hi"` → `true`.** Literal + literal được **compiler cộng sẵn lúc compile**, nên giống hệt viết `"hi"` và dùng chung object trong String pool. Khác với `x + "va"` (`x` là biến): tính lúc chạy, tạo object mới, nên `==` ra `false`.
+- **Câu 2 (4): `d.equals(e)` (2 StringBuilder) → `false`.** (Lỗi 2, lần 2.) StringBuilder không override `equals()`, nên so sánh địa chỉ. Cách đúng: `d.toString().equals(e.toString())`.
+- **Câu 3 (2): `"abc".equals(null)` → `false`.** (Lỗi 9, lần 2.) Biến trước dấu chấm là `"abc"`, có thật, nên không crash. `x.equals(null)` luôn là `false`.
+- **Câu 4 (3): `"".split(",").length` → `1`.** (Lỗi 11, lần 2.) Không cắt được gì thì trả về nguyên chuỗi gốc: `[""]`.
+- **Câu 4 (4): `"  x  y ".trim().split("\\s+").length` → `2`.** `trim()` cho `"x  y"`, `\\s+` coi 2 dấu cách là 1 nhát cắt, nên được `["x", "y"]`.
+- **Câu 5: 2 bug trong `compress`:**
+  1. Quên ghi nhóm cuối sau vòng lặp (lỗi 15), nên `"aabbb"` → `"a2"` thay vì `"a2b3"`.
+  2. Không xử lý đầu vào đặc biệt: `""` thì `charAt(0)` bị `StringIndexOutOfBoundsException`; `null` thì `NullPointerException`.
+  - Bài học: lần theo code ra `"a2"` là đúng, nhưng phải **so với kết quả mong đợi** mới nhận ra đó là bug.
+  - `count = 0` + `i = 0` KHÔNG phải off-by-one (ký tự đầu chưa được đếm). `count = 1` + `i = 1` cũng đúng. Chỉ `count = 1` + `i = 0` mới đếm 2 lần. **Giá trị khởi đầu của biến đếm và chỉ số bắt đầu vòng lặp phải khớp nhau.**
+
+## 🔁 Ôn lại 3 lỗi lặp lại: 6 / 6 ✅ (tất cả "Chắc chắn" và đều đúng)
+| Dòng | Đáp án |
+|---|---|
+| `p.equals(q)` (2 StringBuilder) | `false` |
+| `p.toString().equals(q.toString())` | `true` |
+| `"ok".equals(n)` (`n = null`) | `false` |
+| `n.equals("ok")` | 💥 `NullPointerException` |
+| `"".split(" ").length` | `1` |
+| `"ja" + "va" == "java"` | `true` (phép `+` được tính trước `==`) |
+
+→ Mức tự tin đã **khớp với kết quả thật**. 3 lỗi lặp lại đã được sửa.
+
+## ⚠️ Lỗi đã mắc trong bài kiểm tra
+17. **Literal + literal được cộng lúc compile.** `"h" + "i" == "hi"` là `true`. Chỉ biến (không `final`) cộng chuỗi mới tạo object mới lúc chạy.
+18. **Tự tin sai.** Ghi "Chắc chắn" cho những lỗi đã có trong Notes. Cần ôn lại các lỗi cũ bằng cách **làm lại bài tập**, không chỉ đọc lại.
+
+---
+
+# 📝 Tổng kết Bài 1 (tự viết bằng lời của mình)
+1. 3 điều quan trọng nhất mình học được:
+   -
+   -
+   -
+2. Lỗi mình mắc nhiều nhất, và cách tránh:
+   -
+3. Điều mình vẫn chưa chắc (để ôn ở Bài 2):
+   -
