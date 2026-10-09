@@ -120,18 +120,67 @@ Java luôn **copy giá trị của biến** khi truyền vào hàm. Với refere
 
 ---
 
-## ✅ Kiểm chứng bằng `Verify.java` (tự điền sau khi chạy)
-| Câu | Kết quả chạy thật | Khớp lời giải? |
-|---|---|---|
-| Q4 | | |
-| Q5 | | |
-| Q7 | | |
-| Q8 | | |
-| Q10 (lesson02-fundamentals/Verify.java:80: error: cannot assign a value to final variable list
-        list = new ArrayList<>(); // Uncommenting this line will cause a compile-time error: "cannot assign a value to final variable list"
+## ✅ Kiểm chứng bằng `Verify.java`
+| Câu | Kết quả chạy thật | Câu trả lời ban đầu (ANSWERS.md) | Khớp lời giải? |
+|---|---|---|---|
+| Q4 | `true` / `false` / `true` / `true` | true / false / true / true | ✅ đúng từ đầu |
+| Q5 | `java` (không gán lại), `JAVA` (sau khi gán lại) | "java" | ✅ |
+| Q7 | sau `change`: n = 1, sb = hello · sau `append`: sb = **hello world** · sau `reassign`: sb = **hello world** (không đổi) | `100 \| new` | ❌ ban đầu sai, code xác nhận lời giải |
+| Q8 | `x == y`: true · `p == q`: **false** · `p.equals(q)`: true · `NullPointerException: Cannot invoke "java.lang.Integer.intValue()"` | (1)(2) true, (3) exception | 🟡 (2) ban đầu sai; thông báo lỗi chứng minh `int k = z` = `z.intValue()` |
+| Q10 | `list.add("a")` chạy được → `[a]`; dòng gán lại bị lỗi compile (xem bên dưới) | "compile được" | ❌ ban đầu sai |
+
+Thông báo lỗi compile của Q10:
+```
+lesson02-fundamentals/Verify.java:80: error: cannot assign a value to final variable list
+        list = new ArrayList<>();
         ^
 1 error
-error: compilation failed) | | |
+error: compilation failed
+```
+
+---
+
+## 🔑 Quy tắc "vế trái của dấu `=`"
+| Vế trái của `=` | Ví dụ | Ý nghĩa | Ai thấy thay đổi? |
+|---|---|---|---|
+| **Chỉ có tên biến** | `s2 = ...`, `arr = ...`, `s = ...` | ghi địa chỉ mới lên **tờ giấy** đó | **chỉ biến đó** |
+| **Có `[ ]` hoặc dấu `.`** | `arr[0] = ...`, `sb.append(...)` | **đi vào nhà** sửa đồ bên trong | **mọi biến** đang giữ địa chỉ nhà đó |
+
+- `arr[0] = 0` có dấu `=` nhưng vế trái có `[0]`, nên đó là SỬA ĐỒ TRONG NHÀ.
+- Trong hàm: gán `param = ...` thì bên ngoài không thấy. Muốn đổi biến bên ngoài, hàm phải `return` rồi bên ngoài tự gán lại: `name = upper(name);`.
+- Sau `b = new ...`, `a` và `b` đã ở **2 nhà khác nhau**. Mọi thay đổi qua `b` sau đó không liên quan đến `a`.
+
+---
+
+## 🔁 Kiểm tra lại lần 1 (R1–R5): 2 / 5
+| Câu | Mình trả lời | Đáp án | |
+|---|---|---|---|
+| R1. `reset(a)` (`arr[0]=0`) rồi `replace(a)` (`arr = new...`) | `5 6` | **`0 6`** | ❌ không thấy `arr[0] = 0` là sửa object |
+| R2. `s2 = s1; s2 = new SB("B"); s2.append("C")` | `BC BC` | **`A BC`** | ❌ tưởng `s2 = new...` ảnh hưởng `s1` |
+| R3. `upper(name)` với `s = s.toUpperCase()` | `AN` | **`an`** | ❌ gán tham số trong hàm + String immutable |
+| R4. `Integer` 100 / 1000 | true / false / true | true / false / true | ✅ |
+| R5. `final StringBuilder` gán lại | không compile, dòng 3, `xy` | không compile, dòng 3, `xy` | ✅ |
+
+→ R4, R5 đúng: đã nắm **Integer cache** và **`final` khóa biến, không khóa object**.
+→ R1–R3 sai cùng 1 gốc: chưa phân biệt "sửa object" với "đổi địa chỉ của biến", nên mới có quy tắc "vế trái của `=`" ở trên.
+
+## 🔁 Kiểm tra lại lần 2 (mảng `a`, `b`): 4 / 4 ✅
+```java
+int[] a = {1, 2, 3};
+int[] b = a;
+b[1] = 99;               // (1) a thấy? → CÓ
+b = new int[]{7, 7, 7};  // (2) a thấy? → KHÔNG
+b[0] = 50;               // (3) a thấy? → KHÔNG (b đã sang nhà mới)
+System.out.println(a[0] + " " + a[1] + " " + a[2]);   // (4) → 1 99 3
+```
+→ Từ 2/5 lên 4/4 sau khi học quy tắc "vế trái của `=`".
+⚠️ Chưa ghi mức tự tin ở cả 2 lần kiểm tra lại. Lần sau phải ghi.
+
+## ⚠️ Lỗi bổ sung
+7. **Không thấy `arr[i] = ...` là sửa object.** Có dấu `=` không có nghĩa là chỉ đổi biến, phải nhìn vế trái.
+8. **Tưởng gán lại một biến sẽ ảnh hưởng biến khác** đang chung địa chỉ (`s2 = new ...` không làm `s1` đổi).
+9. **Quên xóa `// TODO`** (lần 4, trong `Verify.java`).
+10. **Quên ghi mức tự tin** khi làm bài kiểm tra lại.
 
 ## 📝 Tổng kết Bài 2 (tự viết bằng lời của mình)
 1. Ý quan trọng nhất mình rút ra:
