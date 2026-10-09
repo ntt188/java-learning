@@ -8,7 +8,7 @@
 - Thư mục bài mới đặt tên theo số task: `taskNN-ten-ngan/` (ví dụ `task08-control-flow/`).
 
 ## Trạng thái hiện tại (cập nhật 2026-10-09 16:50)
-- **Task #8 XONG** (branch `task08-control-flow`, 65/65 PASS). Notion vẫn đang để "Đang làm" → chờ học viên đồng ý mới đổi sang "Xong".
+- **Task #8 XONG** (branch `task08-control-flow`, 65/65 PASS). Notion đã đổi sang "Xong" (học viên tự đổi).
 - **Bước tiếp theo: Task #9**: Dùng Debugger (breakpoint, step into/over, watch, evaluate), Practice 30 phút.
   - Dùng chính `task08-control-flow/ControlFlowPractice.java`: debug `sumTo(4)` và `fibonacciRecursive(5)` để **xem stack frame chồng lên nhau** (Frames panel); watch `n` trong `reverseNumber(-45)` để thấy `x` bên `main` không đổi (pass-by-value).
   - Mở đầu Task #9 bằng 1 câu kiểm tra nhanh: học viên tự giải thích `sumTo` (base case / bước thu nhỏ) và câu C2 (`big * 2`), vì phần 🧪 và 📝 của Task #8 là Claude làm hộ.
