@@ -41,12 +41,7 @@ public class Verify {
     }
 
     static void q7() {
-        System.out.println("=== Q7: pass-by-value ===");
-        // TODO: int n = 1; StringBuilder sb = new StringBuilder("hello");
-        // TODO: gọi change(n), append(sb), reassign(sb)
-        // TODO: in n + " | " + sb
-        // 🎁 Thử thêm: in sb SAU MỖI lần gọi hàm để thấy chính xác lúc nào sb thay đổi
-        int n = 1;
+        System.out.println("=== Q7: pass-by-value ===");int n = 1;
         StringBuilder sb = new StringBuilder("hello");
         change(n);
         System.out.println("After change(n): n = " + n + ", sb = " + sb);
@@ -79,11 +74,6 @@ public class Verify {
     // ===== Q10: final và immutable =====
     static void q10() {
         System.out.println("=== Q10: final vs immutable ===");
-        // TODO bước 1: final List<String> list = new ArrayList<>();
-        // TODO bước 2: list.add("a"); rồi in list → có chạy được không?
-        // TODO bước 3: thêm dòng list = new ArrayList<>(); → chạy và ĐỌC thông báo lỗi compile
-        // TODO bước 4: comment dòng ở bước 3 lại (thêm //) để cả file chạy được
-        //              và chép thông báo lỗi vào Notes.md
         final List<String> list = new ArrayList<>();
         list.add("a");
         System.out.println("List after adding 'a': " + list);

@@ -127,7 +127,11 @@ Java luôn **copy giá trị của biến** khi truyền vào hàm. Với refere
 | Q5 | | |
 | Q7 | | |
 | Q8 | | |
-| Q10 (chép thông báo lỗi compile) | | |
+| Q10 (lesson02-fundamentals/Verify.java:80: error: cannot assign a value to final variable list
+        list = new ArrayList<>(); // Uncommenting this line will cause a compile-time error: "cannot assign a value to final variable list"
+        ^
+1 error
+error: compilation failed) | | |
 
 ## 📝 Tổng kết Bài 2 (tự viết bằng lời của mình)
 1. Ý quan trọng nhất mình rút ra:
