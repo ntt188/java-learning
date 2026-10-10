@@ -8,7 +8,7 @@
 - Thư mục bài mới đặt tên theo số task: `taskNN-ten-ngan/` (ví dụ `task08-control-flow/`).
 
 ## Trạng thái hiện tại (cập nhật 2026-10-09 23:59)
-- **Task #9 XONG** (branch `task09-debugger`, 11/11 PASS, bảng bằng chứng đủ 4 bug, làm xong Phần B). Notion vẫn "Đang làm" → chờ học viên đồng ý mới đổi sang "Xong".
+- **Task #9 XONG** (branch `task09-debugger`, 11/11 PASS, bảng bằng chứng đủ 4 bug, làm xong Phần B). Notion đã đổi sang "Xong" (học viên tự đổi).
 - **Bước tiếp theo: Task #10**: P01 Todo CLI: viết yêu cầu & thiết kế class (Task, TaskService, TaskRepository) trên giấy. Build, 60 phút.
   - Mở đầu Task #10 bằng 2 câu ôn nhanh (bắt buộc ✅🤔❌): Condition để dừng đúng lúc `i` là 500; panel Frames khi đang ở trong một hàm do `main` gọi có mấy dòng.
 - Việc tồn đọng (không bắt buộc): "📝 Tổng kết Bài 2" trong `lesson02-fundamentals/Notes.md` còn trống; tick README cho Task #6; viết lại 📝 Task #8 và #9 bằng lời của mình (cả hai do Claude viết hộ).
