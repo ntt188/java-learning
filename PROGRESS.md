@@ -8,7 +8,7 @@
 - Thư mục bài mới đặt tên theo số task: `taskNN-ten-ngan/` (ví dụ `task08-control-flow/`).
 
 ## Trạng thái hiện tại (cập nhật 2026-10-12 15:35)
-- **Task #11 XONG** (branch `task11-weekly-review`, `Notes.md`). Claude đã cập nhật Notion: W01 → "Đã review" (Giờ thực tế 12, Điều làm tốt, Cần cải thiện, nội dung review); 5 topic: CLI/Git/Debugger/Java Fundamentals → Luyện tập, GitHub & Collaboration → Đang học; W02 → "Đang chạy", Giờ dự kiến 12, ghi 3 ưu tiên tuần 2. Trạng thái Task #11 trên Notion: chờ học viên.
+- **Task #11 XONG** (branch `task11-weekly-review`, `Notes.md`). Claude đã cập nhật Notion: W01 → "Đã review" (Giờ thực tế 12, Điều làm tốt, Cần cải thiện, nội dung review); 5 topic: CLI/Git/Debugger/Java Fundamentals → Luyện tập, GitHub & Collaboration → Đang học; W02 → "Đang chạy", Giờ dự kiến 12, ghi 3 ưu tiên tuần 2. Task #11 trên Notion: "Xong" (Claude đổi, học viên đồng ý 2026-10-12).
 - **Bước tiếp theo: Task #12**: Học class là gì; phân biệt class và object. Learn, 30 phút.
   - Mở đầu bằng câu `null` (bắt buộc ✅🤔❌). Ví dụ: `Task t = repo.findById(1); t = null; t.getTitle();` → `NullPointerException`. Cần đúng 3 lần liên tiếp (hiện 0/3).
 - **3 ưu tiên tuần 2** (đo được): ghi ✅🤔❌ 100%; `null`/reference đúng 3 lần liên tiếp; kẻ bảng lần từng bước trước khi đoán output.
