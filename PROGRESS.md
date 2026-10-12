@@ -8,10 +8,12 @@
 - Thư mục bài mới đặt tên theo số task: `taskNN-ten-ngan/` (ví dụ `task08-control-flow/`).
 
 ## Trạng thái hiện tại (cập nhật 2026-10-10 16:25)
-- **Task #10 XONG** (branch `task10-todo-design`, `Notes.md`: yêu cầu, sơ đồ 3 class, luồng `done 2` cả 2 nhánh, sơ đồ reference). Notion: CHƯA đổi trạng thái (chờ học viên đồng ý).
+- **Task #10 XONG** (branch `task10-todo-design`, `Notes.md`: yêu cầu, sơ đồ 3 class, luồng `done 2` cả 2 nhánh, sơ đồ reference). Notion đã đổi sang "Xong" (học viên tự đổi, 2026-10-12). Đã commit + push lên GitHub.
 - **Bước tiếp theo: Task #11**: Weekly review tuần 1: điền trang Tuần trên Notion, cập nhật trạng thái topic, kế hoạch tuần 2. Review, 30 phút.
   - Mở đầu bằng 1 câu ôn (bắt buộc ✅🤔❌): `Task t = repo.findById(1); t = null; t.getTitle();` → chuyện gì xảy ra? (đáp án: `NullPointerException`, KHÔNG phải "trả về null").
 - Việc tồn đọng (không bắt buộc): 📝 Tổng kết Bài 2 (`lesson02-fundamentals`) còn trống; tick README Task #6; viết lại 📝 Task #8, #9 và mục 2–3 📝 Task #10 bằng lời của mình (Claude viết hộ); sửa lỗi gõ "sữa"/"Nguời" trong Task #10 Notes.md.
+
+- **Git:** Claude tự commit (dùng tên/email của học viên + dòng Co-Authored-By); máy ảo không có quyền GitHub nên **học viên tự push** (bấm Push/OK trong editor). Mỗi task commit riêng.
 
 ## Task đã xong (Notion)
 | # | Task | Bằng chứng trong repo |
