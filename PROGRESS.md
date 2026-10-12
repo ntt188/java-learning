@@ -8,8 +8,8 @@
 - Thư mục bài mới đặt tên theo số task: `taskNN-ten-ngan/` (ví dụ `task08-control-flow/`).
 
 ## Trạng thái hiện tại (cập nhật 2026-10-12 16:30)
-- **Task #12 XONG** (branch `task12-class-object`, `ClassObjectDemo.java` chạy đúng cả Cách A + B; `Notes.md`). Notion: chờ học viên đồng ý đổi "Xong".
-- **Bước tiếp theo: Task #13**: Tạo class đơn giản Book với fields & methods. Practice, 30 phút.
+- **Task #12 XONG** (branch `task12-class-object`, `ClassObjectDemo.java` chạy đúng cả Cách A + B; `Notes.md`). Notion: "Xong" (Claude đổi, học viên đồng ý 2026-10-12).
+- **Bước tiếp theo: Task #13** (chỉ bắt đầu khi học viên gõ "Continue"): Tạo class đơn giản Book với fields & methods. Practice, 30 phút.
   - Mở đầu: 1 câu phân biệt object vs biến reference (ví dụ: `Book a = new Book(); Book b = a; Book c = new Book();` → mấy object, mấy biến?). Ghi ✅🤔❌.
 - **3 ưu tiên tuần 2** (đo được): ghi ✅🤔❌ 100%; `null`/reference đúng 3 lần liên tiếp; kẻ bảng lần từng bước trước khi đoán output.
 - Việc tồn đọng (không bắt buộc): 📝 Tổng kết Bài 2 (`lesson02-fundamentals`) còn trống; tick README Task #6; viết lại 📝 Task #8, #9 và mục 2–3 📝 Task #10 bằng lời của mình; sửa lỗi gõ "sữa"/"Nguời" trong Task #10 Notes.md.
