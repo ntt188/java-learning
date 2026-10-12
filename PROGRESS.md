@@ -7,11 +7,12 @@
 - Chỉ truy vấn Notion khi cần xem task kế tiếp ngoài danh sách bên dưới, hoặc khi đồng bộ trạng thái.
 - Thư mục bài mới đặt tên theo số task: `taskNN-ten-ngan/` (ví dụ `task08-control-flow/`).
 
-## Trạng thái hiện tại (cập nhật 2026-10-10 16:25)
-- **Task #10 XONG** (branch `task10-todo-design`, `Notes.md`: yêu cầu, sơ đồ 3 class, luồng `done 2` cả 2 nhánh, sơ đồ reference). Notion đã đổi sang "Xong" (học viên tự đổi, 2026-10-12). Đã commit + push lên GitHub.
-- **Bước tiếp theo: Task #11**: Weekly review tuần 1: điền trang Tuần trên Notion, cập nhật trạng thái topic, kế hoạch tuần 2. Review, 30 phút.
-  - Mở đầu bằng 1 câu ôn (bắt buộc ✅🤔❌): `Task t = repo.findById(1); t = null; t.getTitle();` → chuyện gì xảy ra? (đáp án: `NullPointerException`, KHÔNG phải "trả về null").
-- Việc tồn đọng (không bắt buộc): 📝 Tổng kết Bài 2 (`lesson02-fundamentals`) còn trống; tick README Task #6; viết lại 📝 Task #8, #9 và mục 2–3 📝 Task #10 bằng lời của mình (Claude viết hộ); sửa lỗi gõ "sữa"/"Nguời" trong Task #10 Notes.md.
+## Trạng thái hiện tại (cập nhật 2026-10-12 15:35)
+- **Task #11 XONG** (branch `task11-weekly-review`, `Notes.md`). Claude đã cập nhật Notion: W01 → "Đã review" (Giờ thực tế 12, Điều làm tốt, Cần cải thiện, nội dung review); 5 topic: CLI/Git/Debugger/Java Fundamentals → Luyện tập, GitHub & Collaboration → Đang học; W02 → "Đang chạy", Giờ dự kiến 12, ghi 3 ưu tiên tuần 2. Trạng thái Task #11 trên Notion: chờ học viên.
+- **Bước tiếp theo: Task #12**: Học class là gì; phân biệt class và object. Learn, 30 phút.
+  - Mở đầu bằng câu `null` (bắt buộc ✅🤔❌). Ví dụ: `Task t = repo.findById(1); t = null; t.getTitle();` → `NullPointerException`. Cần đúng 3 lần liên tiếp (hiện 0/3).
+- **3 ưu tiên tuần 2** (đo được): ghi ✅🤔❌ 100%; `null`/reference đúng 3 lần liên tiếp; kẻ bảng lần từng bước trước khi đoán output.
+- Việc tồn đọng (không bắt buộc): 📝 Tổng kết Bài 2 (`lesson02-fundamentals`) còn trống; tick README Task #6; viết lại 📝 Task #8, #9 và mục 2–3 📝 Task #10 bằng lời của mình; sửa lỗi gõ "sữa"/"Nguời" trong Task #10 Notes.md.
 
 - **Git:** Claude tự commit (dùng tên/email của học viên + dòng Co-Authored-By); máy ảo không có quyền GitHub nên **học viên tự push** (bấm Push/OK trong editor). Mỗi task commit riêng.
 
@@ -28,20 +29,21 @@
 | 8 | Control flow & methods: 10 bài | `task08-control-flow/` (65/65 PASS; đoán output yếu: Q 2/5, L ~0.75/3, C ~1.75/3; 🧪 + 📝 do Claude làm hộ) |
 | 9 | Dùng Debugger | `task09-debugger/` (11/11 PASS; 🧪 ~1/5 + bổ sung 1/3; bài NaN 1/5; 📝 do Claude viết hộ) |
 | 10 | P01 Todo CLI: thiết kế class | `task10-todo-design/` (🧪 3/3 + thêm 2/3; khởi động 1.5/2; Claude sửa hộ Bước 2–4 và viết hộ 📝 mục 2–3) |
+| 11 | Weekly review tuần 1 | `task11-weekly-review/` (câu `null` khởi động SAI lần 3; tự đánh giá 4 topic "Thành thạo" → hạ xuống; Claude bổ sung ví dụ, bảng topic, mục 4–5) |
 
 ## 5 task kế tiếp
 | # | Task | Bước | Phút |
 |---|---|---|---|
-| 11 | Weekly review tuần 1: điền trang Tuần, cập nhật topic, kế hoạch tuần 2 | Review | 30 |
 | 12 | Học class là gì; phân biệt class và object | Learn | 30 |
 | 13 | Tạo class đơn giản Book với fields & methods | Practice | 30 |
 | 14 | Tạo nhiều object từ một class; vẽ sơ đồ reference trỏ tới object | Practice | 20 |
 | 15 | Hiểu constructor, constructor overloading & this | Learn | 30 |
+| 16 | Thực hành encapsulation: private fields + validation trong setter (BankAccount không được âm) | Practice | 45 |
 
-(Tiếp theo #16–#32: OOP tuần 2: constructor/this, encapsulation, static/final, inheritance, polymorphism, abstract/interface, **#25 equals & hashCode**, enum/record, Maven + JUnit, P01.)
+(Tiếp theo #17–#32: OOP tuần 2: constructor/this, encapsulation, static/final, inheritance, polymorphism, abstract/interface, **#25 equals & hashCode**, enum/record, Maven + JUnit, P01.)
 
 ## Điểm yếu cần ôn (lồng vào bài mới)
-1. **Biến reference chứa ĐỊA CHỈ** + quy tắc "vế trái của `=`" (tên biến = đổi địa chỉ; có `.`/`[ ]` = sửa object). Mới nắm (4/4), cần ôn ở Task #14 (sơ đồ reference) và OOP. Task #10: vẽ đúng sơ đồ 2 biến trỏ 1 Task, đúng câu `t = new Task(...)`, nhưng SAI khi có `null`: nghĩ `t = null` "sửa cả đối tượng" (🤔). Bài luyện cuối: `b = a; a = null; b.getTitle()` → đoán LỖI (sai, đúng là in "Học Java"); vẫn tưởng `= null` phá object. **Task #14 phải ôn lại đúng dạng này.**
+1. **Biến reference chứa ĐỊA CHỈ** + quy tắc "vế trái của `=`" (tên biến = đổi địa chỉ; có `.`/`[ ]` = sửa object). Mới nắm (4/4), cần ôn ở Task #14 (sơ đồ reference) và OOP. Task #10: vẽ đúng sơ đồ 2 biến trỏ 1 Task, đúng câu `t = new Task(...)`, nhưng SAI khi có `null`: nghĩ `t = null` "sửa cả đối tượng" (🤔). Bài luyện cuối: `b = a; a = null; b.getTitle()` → đoán LỖI (sai, đúng là in "Học Java"); vẫn tưởng `= null` phá object. **Task #14 phải ôn lại đúng dạng này.** Task #11: câu `t = null; t.getTitle()` đoán "ra title" → SAI lần 3 (không ghi ✅🤔❌).
 2. `Object.equals()` mặc định = `==`; StringBuilder không override `equals()` (sai 3 lần). Ôn kỹ ở Task #25.
 3. `null` khác `""`; quy tắc 2 bước "biến trước dấu chấm". Task #10: biết `null.getTitle()` lỗi nhưng sau đó lại ghi "trả về null" → phải nói được tên `NullPointerException`.
 4. `split`: không cắt được thì trả về `[""]`.
@@ -59,3 +61,4 @@
 - Học tốt nhất qua: sơ đồ stack/heap, ví dụ "tờ giấy địa chỉ / ngôi nhà", lần theo từng bước, thí nghiệm sửa code rồi xem test FAIL.
 - Task #10: vẫn quên ✅🤔❌ (≈5 lần trong 1 buổi). Khi mức tự tin có ghi thì khá chuẩn (câu sai duy nhất ghi 🤔). Nhờ "sửa hộ" Bước 2–4 và "viết tiếp" 📝 → đã làm hộ + ra bài luyện (bài luyện làm đúng `1 2 Học OOP`).
 - Thiết kế: hay quên "dữ liệu này sinh ra ở đâu" (id) và quên đối chiếu thiết kế với yêu cầu Bước 1.
+- Task #11: **tự đánh giá quá cao** (ghi 4 topic "Thành thạo" dù 🧪 Debugger ~1/5, chưa làm PR). Trả lời review chung chung, không số liệu → nhờ Claude làm hộ. Khi tự đánh giá: bắt buộc kèm số liệu.
