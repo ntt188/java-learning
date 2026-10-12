@@ -39,7 +39,7 @@
 (Tiếp theo #16–#32: OOP tuần 2: constructor/this, encapsulation, static/final, inheritance, polymorphism, abstract/interface, **#25 equals & hashCode**, enum/record, Maven + JUnit, P01.)
 
 ## Điểm yếu cần ôn (lồng vào bài mới)
-1. **Biến reference chứa ĐỊA CHỈ** + quy tắc "vế trái của `=`" (tên biến = đổi địa chỉ; có `.`/`[ ]` = sửa object). Mới nắm (4/4), cần ôn ở Task #14 (sơ đồ reference) và OOP. Task #10: vẽ đúng sơ đồ 2 biến trỏ 1 Task, đúng câu `t = new Task(...)`, nhưng SAI khi có `null`: nghĩ `t = null` "sửa cả đối tượng" (🤔).
+1. **Biến reference chứa ĐỊA CHỈ** + quy tắc "vế trái của `=`" (tên biến = đổi địa chỉ; có `.`/`[ ]` = sửa object). Mới nắm (4/4), cần ôn ở Task #14 (sơ đồ reference) và OOP. Task #10: vẽ đúng sơ đồ 2 biến trỏ 1 Task, đúng câu `t = new Task(...)`, nhưng SAI khi có `null`: nghĩ `t = null` "sửa cả đối tượng" (🤔). Bài luyện cuối: `b = a; a = null; b.getTitle()` → đoán LỖI (sai, đúng là in "Học Java"); vẫn tưởng `= null` phá object. **Task #14 phải ôn lại đúng dạng này.**
 2. `Object.equals()` mặc định = `==`; StringBuilder không override `equals()` (sai 3 lần). Ôn kỹ ở Task #25.
 3. `null` khác `""`; quy tắc 2 bước "biến trước dấu chấm". Task #10: biết `null.getTitle()` lỗi nhưng sau đó lại ghi "trả về null" → phải nói được tên `NullPointerException`.
 4. `split`: không cắt được thì trả về `[""]`.
