@@ -8,7 +8,7 @@
 - Thư mục bài mới đặt tên theo số task: `taskNN-ten-ngan/` (ví dụ `task08-control-flow/`).
 
 ## Trạng thái hiện tại (cập nhật 2026-10-13 15:10)
-- **Task #14 XONG** (branch `task14-reference-diagram`, `ReferenceDemo.java` 10/10 PASS; `Notes.md`, 📝 tự viết sau 2 lần sửa). Notion: **chờ học viên đồng ý** đổi sang "Xong".
+- **Task #14 XONG** (branch `task14-reference-diagram`, `ReferenceDemo.java` 10/10 PASS; `Notes.md`, 📝 tự viết sau 2 lần sửa). Notion: "Xong" (Claude đổi, học viên đồng ý 2026-10-13).
 - **Bước tiếp theo: Task #15** (chỉ bắt đầu khi học viên gõ "Continue"): Hiểu constructor, constructor overloading & `this`. Learn, 30 phút. Dùng lại `Book` (thay hàm `newBook` bằng constructor).
   - Bắt buộc ôn: 1 câu **gán lại tham số trong hàm** (`b = null`/`b = new` trong method) — nối sang `this.title = title` vs `title = title`; 1 câu **đếm object sau khi ô mảng bị gán lại** (bảng theo từng ô).
 - **3 ưu tiên tuần 2** (đo được): ghi ✅🤔❌ 100%; `null`/reference đúng 3 lần liên tiếp; kẻ bảng lần từng bước trước khi đoán output.
