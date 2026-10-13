@@ -7,10 +7,10 @@
 - Chỉ truy vấn Notion khi cần xem task kế tiếp ngoài danh sách bên dưới, hoặc khi đồng bộ trạng thái.
 - Thư mục bài mới đặt tên theo số task: `taskNN-ten-ngan/` (ví dụ `task08-control-flow/`).
 
-## Trạng thái hiện tại (cập nhật 2026-10-13 11:00)
-- **Task #13 XONG** (branch `task13-book-class`, `Book.java` + `BookTest.java` 12/12 PASS; `Notes.md`, 📝 học viên tự viết). Notion: "Xong" (Claude đổi, học viên đồng ý 2026-10-13).
-- **Bước tiếp theo: Task #14** (chỉ bắt đầu khi học viên gõ "Continue"): Tạo nhiều object từ một class; vẽ sơ đồ reference trỏ tới object. Practice, 20 phút. Dùng lại `Book`.
-  - Bắt buộc ôn: câu `b = a; a = null; b.getTitle()` (Điểm yếu #1) + 1 câu chia nguyên/`double` (Điểm yếu #7) + 1 câu về **thứ tự lệnh làm đổi trạng thái object** (lỗi test 11/12 ở Task #13).
+## Trạng thái hiện tại (cập nhật 2026-10-13 15:10)
+- **Task #14 XONG** (branch `task14-reference-diagram`, `ReferenceDemo.java` 10/10 PASS; `Notes.md`, 📝 tự viết sau 2 lần sửa). Notion: **chờ học viên đồng ý** đổi sang "Xong".
+- **Bước tiếp theo: Task #15** (chỉ bắt đầu khi học viên gõ "Continue"): Hiểu constructor, constructor overloading & `this`. Learn, 30 phút. Dùng lại `Book` (thay hàm `newBook` bằng constructor).
+  - Bắt buộc ôn: 1 câu **gán lại tham số trong hàm** (`b = null`/`b = new` trong method) — nối sang `this.title = title` vs `title = title`; 1 câu **đếm object sau khi ô mảng bị gán lại** (bảng theo từng ô).
 - **3 ưu tiên tuần 2** (đo được): ghi ✅🤔❌ 100%; `null`/reference đúng 3 lần liên tiếp; kẻ bảng lần từng bước trước khi đoán output.
 - Việc tồn đọng (không bắt buộc): 📝 Tổng kết Bài 2 (`lesson02-fundamentals`) còn trống; tick README Task #6; viết lại 📝 Task #8, #9 và mục 2–3 📝 Task #10 bằng lời của mình; sửa lỗi gõ "sữa"/"Nguời" trong Task #10 Notes.md.
 
@@ -30,22 +30,23 @@
 | 9 | Dùng Debugger | `task09-debugger/` (11/11 PASS; 🧪 ~1/5 + bổ sung 1/3; bài NaN 1/5; 📝 do Claude viết hộ) |
 | 10 | P01 Todo CLI: thiết kế class | `task10-todo-design/` (🧪 3/3 + thêm 2/3; khởi động 1.5/2; Claude sửa hộ Bước 2–4 và viết hộ 📝 mục 2–3) |
 | 11 | Weekly review tuần 1 | `task11-weekly-review/` (câu `null` khởi động SAI lần 3; tự đánh giá 4 topic "Thành thạo" → hạ xuống; Claude bổ sung ví dụ, bảng topic, mục 4–5) |
+| 14 | Nhiều object; sơ đồ reference | `task14-reference-diagram/` (10/10 PASS; khởi động 2/2 ✅ (kể cả bẫy `pages=0`); 🔮 2/3 — **Đoán 2 `replace` pass-by-value ĐÚNG**, Đoán 3 `new Book[3]` nghĩ có 3 object (🤔); Bài 1 sơ đồ đúng; 🧪 3/5 + thêm 2/2 (câu 6–7 có vẽ sơ đồ → đúng hết); 📝 tự viết, sửa 2 lần) |
 | 13 | Class Book: fields & methods | `task13-book-class/` (12/12 PASS; khởi động 2/2 ✅ nhưng bảng ghi `c = null` sai; 🔮 2/3 — Đoán 2 `50/300*100` ✅ mà sai; 🧪 3.5/5 (câu 1 `17 17` ✅ mà sai, câu 5 ghi `33.3333f`); bug tràn số `currentPage + n` → tự sửa bằng so sánh `n` với `pages - currentPage`; 📝 tự viết) |
 | 12 | Class vs object | `task12-class-object/` (khởi động `null` ✅; 🔮 3/3 có ✅; 🧪 2.5/3 + thêm 2/2; Bài 1 ghi `s1` là object → sửa thành biến reference; 📝 do Claude viết hộ) |
 
 ## 5 task kế tiếp
 | # | Task | Bước | Phút |
 |---|---|---|---|
-| 14 | Tạo nhiều object từ một class; vẽ sơ đồ reference trỏ tới object | Practice | 20 |
 | 15 | Hiểu constructor, constructor overloading & this | Learn | 30 |
 | 16 | Thực hành encapsulation: private fields + validation trong setter (BankAccount không được âm) | Practice | 45 |
 | 17 | Tạo getters/setters; so sánh với immutable class (final fields, không setter) | Practice | 30 |
 | 18 | static vs instance; final variable / method / class | Learn | 30 |
+| 19 | Hiểu inheritance; khi nào dùng quan hệ "is-a" | Learn | 30 |
 
-(Tiếp theo #19–#32: OOP tuần 2: constructor/this, encapsulation, static/final, inheritance, polymorphism, abstract/interface, **#25 equals & hashCode**, enum/record, Maven + JUnit, P01.)
+(Tiếp theo #20–#32: OOP tuần 2: constructor/this, encapsulation, static/final, inheritance, polymorphism, abstract/interface, **#25 equals & hashCode**, enum/record, Maven + JUnit, P01.)
 
 ## Điểm yếu cần ôn (lồng vào bài mới)
-1. **Biến reference chứa ĐỊA CHỈ** + quy tắc "vế trái của `=`" (tên biến = đổi địa chỉ; có `.`/`[ ]` = sửa object). Mới nắm (4/4), cần ôn ở Task #14 (sơ đồ reference) và OOP. Task #10: vẽ đúng sơ đồ 2 biến trỏ 1 Task, đúng câu `t = new Task(...)`, nhưng SAI khi có `null`: nghĩ `t = null` "sửa cả đối tượng" (🤔). Bài luyện cuối: `b = a; a = null; b.getTitle()` → đoán LỖI (sai, đúng là in "Học Java"); vẫn tưởng `= null` phá object. **Task #14 phải ôn lại đúng dạng này.** Task #11: câu `t = null; t.getTitle()` đoán "ra title" → SAI lần 3 (không ghi ✅🤔❌). **Task #12: đúng 3/3 liên tiếp** (khởi động `a=b; b=null`, `s=null; s.introduce()`, `y=x; x=null`) nhờ kẻ bảng từng dòng → cải thiện rõ, vẫn ôn 1 câu/task. Mới: nhầm **biến reference = object** (ghi `s1` là object); đếm object = đếm `new`. Task #13: đếm đúng 2 object/3 biến, nhưng bảng ghi `c = null` (nhầm biến với field `c.title`); 📝 lúc đầu viết "đặc điểm của class" → sửa "của object". Câu 🧪 `x.pages=10; y=x; y.read(4); x.read(3)` hiểu đúng 2 biến chung object nhưng ra `17 17` (cộng nhầm `pages` vào `currentPage`).
+1. **Biến reference chứa ĐỊA CHỈ** + quy tắc "vế trái của `=`" (tên biến = đổi địa chỉ; có `.`/`[ ]` = sửa object). Mới nắm (4/4), cần ôn ở Task #14 (sơ đồ reference) và OOP. Task #10: vẽ đúng sơ đồ 2 biến trỏ 1 Task, đúng câu `t = new Task(...)`, nhưng SAI khi có `null`: nghĩ `t = null` "sửa cả đối tượng" (🤔). Bài luyện cuối: `b = a; a = null; b.getTitle()` → đoán LỖI (sai, đúng là in "Học Java"); vẫn tưởng `= null` phá object. **Task #14 phải ôn lại đúng dạng này.** Task #11: câu `t = null; t.getTitle()` đoán "ra title" → SAI lần 3 (không ghi ✅🤔❌). **Task #12: đúng 3/3 liên tiếp** (khởi động `a=b; b=null`, `s=null; s.introduce()`, `y=x; x=null`) nhờ kẻ bảng từng dòng → cải thiện rõ, vẫn ôn 1 câu/task. Mới: nhầm **biến reference = object** (ghi `s1` là object); đếm object = đếm `new`. Task #13: đếm đúng 2 object/3 biến, nhưng bảng ghi `c = null` (nhầm biến với field `c.title`); 📝 lúc đầu viết "đặc điểm của class" → sửa "của object". Câu 🧪 `x.pages=10; y=x; y.read(4); x.read(3)` hiểu đúng 2 biến chung object nhưng ra `17 17` (cộng nhầm `pages` vào `currentPage`). **Task #14:** `replace(x)` (gán `new` trong hàm) ĐÚNG, nhưng `reset(k)` có `b = null` trong hàm → đoán `k` thành null (`null true`, ✅ mà sai; đúng `0 false`) → sau khi vẽ 2 khung `main`/hàm thì câu `clear(t)` ĐÚNG. **Đếm object sau khi ô mảng bị gán lại sai 2 lần** (đếm theo mảng ban đầu); khi kẻ bảng từng ô thì đúng (câu 6). Hiểu được mảng cũng là object (`t = s; t[0] = y`). 📝 lần đầu ghi "gán lại tham số thì bên ngoài thấy" và "đếm object = đếm biến" (sai) → tự sửa ý 2; ý 3 diễn đạt còn rối → quy tắc chuẩn: **đếm object = đếm số ô Heap khác nhau (số `new`), không phải số biến/mũi tên**. `new Book[3]` = 1 mảng, 0 Book. `null` không phải object trên Heap.
 2. `Object.equals()` mặc định = `==`; StringBuilder không override `equals()` (sai 3 lần). Ôn kỹ ở Task #25.
 3. `null` khác `""`; quy tắc 2 bước "biến trước dấu chấm". Task #10: biết `null.getTitle()` lỗi nhưng sau đó lại ghi "trả về null" → phải nói được tên `NullPointerException`.
 4. `split`: không cắt được thì trả về `[""]`.
@@ -64,5 +65,6 @@
 - Task #10: vẫn quên ✅🤔❌ (≈5 lần trong 1 buổi). Khi mức tự tin có ghi thì khá chuẩn (câu sai duy nhất ghi 🤔). Nhờ "sửa hộ" Bước 2–4 và "viết tiếp" 📝 → đã làm hộ + ra bài luyện (bài luyện làm đúng `1 2 Học OOP`).
 - Thiết kế: hay quên "dữ liệu này sinh ra ở đâu" (id) và quên đối chiếu thiết kế với yêu cầu Bước 1.
 - Task #11: **tự đánh giá quá cao** (ghi 4 topic "Thành thạo" dù 🧪 Debugger ~1/5, chưa làm PR). Trả lời review chung chung, không số liệu → nhờ Claude làm hộ. Khi tự đánh giá: bắt buộc kèm số liệu.
+- Task #14: ✅🤔❌ đủ; **3 câu ✅ mà sai đều là câu KHÔNG vẽ sơ đồ** (dù đề ghi "bắt buộc"); câu nào vẽ trước thì đúng → quy tắc: không sơ đồ/bảng thì không được ghi ✅. Code đúng ngay lần đầu (10/10), Cách A `findLongest` lồng vòng lặp thừa (gợi ý 1 vòng với `best`, chưa làm). 📝 cần nhắc 2 lần mới khớp với bài đã làm.
 - Task #13: ghi ✅🤔❌ đầy đủ 100% nhưng **3 câu ✅ mà sai** (Đoán 2, 🧪1, 🧪2 vế sau) → vẫn đoán trước khi kẻ bảng. Sửa code xong **không chạy lại test** (báo xong khi đang 11/12 FAIL). Lần đầu sửa overflow bằng `if (n == Integer.MAX_VALUE)` (vá đúng 1 giá trị). Tự viết 📝 (không nhờ làm hộ) — tiến bộ.
 - Task #12: ghi ✅🤔❌ đầy đủ ở khởi động/🔮/🧪 (tiến bộ lớn), quên ở edge case. Vẫn nhờ Claude viết 📝.
