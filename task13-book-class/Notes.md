@@ -31,7 +31,7 @@ void readMath(int n) {
         currentPage = Math.min(currentPage + n, pages);
     }
 }
-Tràn số: Vì nếu nhập n quá lớn thì int không thể chưa hết dữ liệu
+Tràn số: n lớn làm currentPage + n quay vòng thành số âm, nên Math.min chọn luôn số âm đó.
 ## 🧪 Kiểm tra hiểu bài (ghi ✅🤔❌)
 1. 17 17 ✅
 2. 0 9 ✅
