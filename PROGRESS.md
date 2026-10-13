@@ -8,7 +8,7 @@
 - Thư mục bài mới đặt tên theo số task: `taskNN-ten-ngan/` (ví dụ `task08-control-flow/`).
 
 ## Trạng thái hiện tại (cập nhật 2026-10-13 11:00)
-- **Task #13 XONG** (branch `task13-book-class`, `Book.java` + `BookTest.java` 12/12 PASS; `Notes.md`, 📝 học viên tự viết). Notion: **chờ học viên đồng ý** đổi sang "Xong".
+- **Task #13 XONG** (branch `task13-book-class`, `Book.java` + `BookTest.java` 12/12 PASS; `Notes.md`, 📝 học viên tự viết). Notion: "Xong" (Claude đổi, học viên đồng ý 2026-10-13).
 - **Bước tiếp theo: Task #14** (chỉ bắt đầu khi học viên gõ "Continue"): Tạo nhiều object từ một class; vẽ sơ đồ reference trỏ tới object. Practice, 20 phút. Dùng lại `Book`.
   - Bắt buộc ôn: câu `b = a; a = null; b.getTitle()` (Điểm yếu #1) + 1 câu chia nguyên/`double` (Điểm yếu #7) + 1 câu về **thứ tự lệnh làm đổi trạng thái object** (lỗi test 11/12 ở Task #13).
 - **3 ưu tiên tuần 2** (đo được): ghi ✅🤔❌ 100%; `null`/reference đúng 3 lần liên tiếp; kẻ bảng lần từng bước trước khi đoán output.
