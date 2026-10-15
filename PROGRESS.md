@@ -8,7 +8,7 @@
 - Thư mục bài mới đặt tên theo số task: `taskNN-ten-ngan/` (ví dụ `task08-control-flow/`).
 
 ## Trạng thái hiện tại (cập nhật 2026-10-15 14:20)
-- **Task #15 XONG** (branch `task15-constructor`, `Book.java` 3 constructor + `ConstructorDemo.java` 9/9 PASS; Cách B `this(...)` là code chính). 📝 **Claude viết hộ** (học viên yêu cầu "write a summary") → đã ra 1 bài luyện ngắn (constructor nào được gọi / output), **chưa chấm**. Notion: **chờ học viên đồng ý** đổi sang "Xong".
+- **Task #15 XONG** (branch `task15-constructor`, `Book.java` 3 constructor + `ConstructorDemo.java` 9/9 PASS; Cách B `this(...)` là code chính). 📝 **Claude viết hộ** (học viên yêu cầu "write a summary") → đã ra 1 bài luyện ngắn (constructor nào được gọi / output), **chưa chấm**. Notion: "Xong" (Claude đổi, học viên đồng ý 2026-10-15).
 - **Bước tiếp theo: Task #16** (chỉ bắt đầu khi học viên gõ "Continue"): Encapsulation: private fields + validation trong setter (BankAccount không được âm). Practice, 45 phút.
   - Mở đầu: chấm bài luyện Task #15 nếu học viên đã làm. Bắt buộc ôn: 1 câu **chọn constructor** (đối chiếu từng dòng với danh sách constructor, kẻ bảng kiểu tham số) + 1 câu `this.x = x` vs `x = x` trong setter.
 - **3 ưu tiên tuần 2** (đo được): ghi ✅🤔❌ 100%; `null`/reference đúng 3 lần liên tiếp; kẻ bảng lần từng bước trước khi đoán output.
