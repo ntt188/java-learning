@@ -81,3 +81,6 @@ Bước    Đang ở đâu    Làm gì                        In ra
    // Lamp(): this(40) → Lamp(int) in "2 " → quay lại in "1 " → w = 80
    ```
 4. **Copy constructor `new Book(a)`** tạo object **mới** (`== a` là false), khác `Book b = a` (cùng object).
+
+## ✏️ Bài luyện ngắn để kiểm tra lại
+- không chạy được vì new Cat(2, "Tom") sai vị trí và new Cat("Tom", "2") tham số thứ 2 phải là int chứ ko phải String
